@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal educacional de eletroeletrônica. Conheça circuitos RC, temporização e relógios de tempo real (RTC).">
+  <title>Portal Eletroeletrônica | RTC e Circuitos RC</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Portal Eletroeletrônica - início">
+      <span class="brand-icon" aria-hidden="true">ϟ</span>
+      <span><strong>Portal</strong><small>Eletroeletrônica</small></span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu lateral" aria-expanded="false">☰</button>
+    <nav class="top-nav" aria-label="Navegação principal">
+      <a href="#inicio">Início</a>
+      <a href="#assunto">Assunto</a>
+      <a href="#aplicacoes">Aplicações</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <form class="search" id="search-form" role="search">
+      <label class="sr-only" for="search-input">Pesquisar no conteúdo</label>
+      <input id="search-input" type="search" placeholder="Pesquisar no conteúdo..." autocomplete="off">
+      <button type="submit">Buscar</button>
+    </form>
+  </header>
+
+  <div class="page-layout" id="inicio">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-heading">
+        <span class="eyebrow">NESTE CONTEÚDO</span>
+        <h2>RTC e circuitos RC</h2>
+      </div>
+      <nav aria-label="Navegação do assunto">
+        <a class="side-link active" href="#introducao">Visão geral</a>
+        <a class="side-link" href="#conceitos">Conceitos básicos</a>
+        <a class="side-link" href="#carga-descarga">Carga e descarga</a>
+        <a class="side-link" href="#constante">Constante de tempo</a>
+        <a class="side-link" href="#aplicacoes">Aplicações práticas</a>
+        <a class="side-link" href="#rtc">Como o RTC funciona</a>
+        <a class="side-link" href="#cuidados">Cuidados técnicos</a>
+      </nav>
+      <div class="sidebar-note">
+        <span aria-hidden="true">ⓘ</span>
+        <p>Este é o primeiro assunto do portal. Novos temas poderão ser adicionados depois.</p>
+      </div>
+    </aside>
+
+    <main id="conteudo">
+      <section class="hero" id="introducao">
+        <div class="hero-copy">
+          <span class="pill">GUIA DE ESTUDO · ELETRÔNICA</span>
+          <h1>Circuitos RC e <span>RTC</span></h1>
+          <p>Entenda como resistores e capacitores controlam o tempo dos sinais elétricos e como o relógio de tempo real mantém a data e a hora de um sistema.</p>
+          <a class="primary-button" href="#conceitos">Começar a aprender <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="chip"><span>RTC</span><small>DS3231</small><i></i></div>
+          <div class="circuit-line line-a"></div><div class="circuit-line line-b"></div>
+          <div class="node node-a"></div><div class="node node-b"></div><div class="node node-c"></div>
+          <span class="art-label label-a">R · Resistor</span><span class="art-label label-b">C · Capacitor</span>
+        </div>
+      </section>
+
+      <section class="content-section" id="assunto">
+        <div class="section-heading">
+          <div><span class="eyebrow">01 / INTRODUÇÃO</span><h2>O que são circuitos RC?</h2></div>
+          <span class="section-mark">RC</span>
+        </div>
+        <p>Um circuito RC é formado pela associação de um <strong>resistor (R)</strong> e um <strong>capacitor (C)</strong>. Ele é usado para controlar a variação da tensão ao longo do tempo, realizar filtragem de ruídos e criar atrasos em sinais elétricos.</p>
+        <div class="info-grid">
+          <article class="info-card" id="conceitos">
+            <div class="card-icon resistor-icon">R</div>
+            <h3>Resistência</h3>
+            <p>É a oposição à passagem da corrente elétrica. No circuito RC, ajuda a limitar a corrente e determina a velocidade de carga e descarga do capacitor.</p>
+            <div class="unit">Unidade: ohm (Ω)</div>
+          </article>
+          <article class="info-card">
+            <div class="card-icon capacitor-icon">C</div>
+            <h3>Capacitância</h3>
+            <p>É a capacidade de armazenar energia em um campo elétrico. O capacitor se opõe a mudanças bruscas de tensão.</p>
+            <div class="unit">Unidade: farad (F)</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section tinted" id="carga-descarga">
+        <div class="section-heading">
+          <div><span class="eyebrow">02 / COMPORTAMENTO</span><h2>Carga e descarga do capacitor</h2></div>
+        </div>
+        <div class="two-columns">
+          <article>
+            <span class="mini-tag">CARGA</span>
+            <h3>A tensão aumenta gradualmente</h3>
+            <p>Quando uma fonte é conectada, a corrente passa pelo resistor e o capacitor acumula carga. Conforme a tensão no capacitor aumenta, a corrente diminui.</p>
+            <div class="formula">V<sub>C</sub>(t) = V<sub>in</sub> · (1 − e<sup>−t/τ</sup>)</div>
+          </article>
+          <article>
+            <span class="mini-tag discharge-tag">DESCARGA</span>
+            <h3>A tensão diminui gradualmente</h3>
+            <p>Quando a fonte é removida e existe um caminho de descarga, o capacitor libera a energia armazenada através do circuito.</p>
+            <div class="formula">V<sub>C</sub>(t) = V<sub>0</sub> · e<sup>−t/τ</sup></div>
+          </article>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title"><div><h3>Comportamento ao longo do tempo</h3><p>Curvas ilustrativas de carga e descarga</p></div><span class="chart-legend"><i></i> Carga <i class="legend-discharge"></i> Descarga</span></div>
+          <div class="chart-wrap">
+            <svg viewBox="0 0 600 240" role="img" aria-label="Gráfico ilustrativo: a curva de carga sobe e a de descarga desce ao longo de cinco constantes de tempo.">
+              <g class="grid-lines"><line x1="55" y1="30" x2="565" y2="30"/><line x1="55" y1="75" x2="565" y2="75"/><line x1="55" y1="120" x2="565" y2="120"/><line x1="55" y1="165" x2="565" y2="165"/><line x1="55" y1="210" x2="565" y2="210"/></g>
+              <g class="axis"><line x1="55" y1="25" x2="55" y2="210"/><line x1="55" y1="210" x2="565" y2="210"/></g>
+              <g class="chart-labels"><text x="18" y="34">100%</text><text x="28" y="79">75%</text><text x="28" y="124">50%</text><text x="28" y="169">25%</text><text x="38" y="214">0%</text><text x="55" y="230">0τ</text><text x="151" y="230">1τ</text><text x="253" y="230">2τ</text><text x="355" y="230">3τ</text><text x="457" y="230">4τ</text><text x="553" y="230">5τ</text></g>
+              <path class="charge-curve" d="M55 210 C90 130 120 85 157 72 S230 42 259 36 S335 31 361 30 S460 29 565 29"/>
+              <path class="discharge-curve" d="M55 30 C90 105 120 148 157 165 S230 195 259 200 S335 207 361 208 S460 210 565 210"/>
+            </svg>
+          </div>
+          <p class="chart-caption">Valores aproximados: após 1τ, a carga atinge 63,2% e a descarga cai para 36,8% do valor inicial.</p>
+        </div>
+      </section>
+
+      <section class="content-section" id="constante">
+        <div class="section-heading">
+          <div><span class="eyebrow">03 / FÓRMULA IMPORTANTE</span><h2>Constante de tempo (τ)</h2></div>
+        </div>
+        <p>A constante de tempo indica a rapidez com que o capacitor carrega ou descarrega. Ela depende da resistência e da capacitância do circuito.</p>
+        <div class="tau-equation"><span>τ</span><strong>= R × C</strong><p>τ em segundos · R em ohms · C em farads</p></div>
+        <div class="time-table-wrap">
+          <table>
+            <thead><tr><th>Tempo</th><th>Carga aproximada</th><th>Descarga restante</th></tr></thead>
+            <tbody>
+              <tr><td>1τ</td><td>63,2%</td><td>36,8%</td></tr>
+              <tr><td>2τ</td><td>86,5%</td><td>13,5%</td></tr>
+              <tr><td>3τ</td><td>95,0%</td><td>5,0%</td></tr>
+              <tr><td>4τ</td><td>98,2%</td><td>1,8%</td></tr>
+              <tr><td>5τ</td><td>99,3% (quase completa)</td><td>0,7% (quase descarregado)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-section tinted" id="aplicacoes">
+        <div class="section-heading">
+          <div><span class="eyebrow">04 / NO DIA A DIA</span><h2>Aplicações práticas</h2></div>
+        </div>
+        <div class="application-list">
+          <article class="application-item"><span class="app-number">01</span><div><h3>Atraso na inicialização (Power-On Reset)</h3><p>Um circuito RC pode atrasar o sinal de reset para permitir que a alimentação se estabilize antes de o microcontrolador começar a operar.</p></div></article>
+          <article class="application-item"><span class="app-number">02</span><div><h3>Eliminação de ruído em botões</h3><p>Um circuito RC pode reduzir os pulsos rápidos causados pelo contato mecânico de um botão, ajudando a produzir um sinal mais estável.</p></div></article>
+          <article class="application-item"><span class="app-number">03</span><div><h3>Acendimento gradual de LEDs</h3><p>A carga e a descarga do capacitor podem produzir mudanças graduais no controle de um LED, criando efeitos de aumento e diminuição de brilho.</p></div></article>
+          <article class="application-item"><span class="app-number">04</span><div><h3>Filtros eletrônicos</h3><p>Circuitos RC podem atuar como filtros passa-baixas ou passa-altas, ajudando a selecionar faixas de frequência de um sinal.</p></div></article>
+        </div>
+      </section>
+
+      <section class="content-section" id="rtc">
+        <div class="section-heading">
+          <div><span class="eyebrow">05 / RELÓGIO DE TEMPO REAL</span><h2>Como funciona um RTC?</h2></div>
+          <span class="section-mark">TIME</span>
+        </div>
+        <p>RTC significa <strong>Real-Time Clock</strong>, ou relógio de tempo real. É um circuito integrado responsável por manter a contagem de data e hora, inclusive quando o sistema principal está desligado, desde que tenha uma alimentação de backup adequada.</p>
+        <div class="rtc-panel">
+          <div class="rtc-chip" aria-hidden="true"><span>RTC</span><strong>DS3231</strong><small>RELÓGIO DE TEMPO REAL</small></div>
+          <div class="rtc-points">
+            <div><span class="point-dot"></span><p><strong>Contagem de tempo</strong><br>Registra segundos, minutos, horas e informações de calendário.</p></div>
+            <div><span class="point-dot"></span><p><strong>Alimentação de backup</strong><br>Uma bateria ou solução apropriada de reserva pode manter o relógio ativo quando a fonte principal falha.</p></div>
+            <div><span class="point-dot"></span><p><strong>Comunicação I²C</strong><br>Muitos módulos trocam dados com um microcontrolador usando as linhas SDA e SCL.</p></div>
+          </div>
+        </div>
+        <div class="note-box"><strong>Qual é a relação entre RC e RTC?</strong><p>O circuito RC pode auxiliar em filtragem, temporização e alimentação de reserva baseada em supercapacitor. Porém, a precisão do relógio normalmente depende de uma referência de tempo própria, como um cristal ou oscilador integrado ao RTC.</p></div>
+      </section>
+
+      <section class="content-section tinted" id="cuidados">
+        <div class="section-heading">
+          <div><span class="eyebrow">06 / PROJETO RESPONSÁVEL</span><h2>Cuidados técnicos</h2></div>
+        </div>
+        <ul class="care-list">
+          <li><span>✓</span><p><strong>Tolerância dos componentes:</strong> os valores reais de resistores e capacitores podem variar em relação aos valores nominais.</p></li>
+          <li><span>✓</span><p><strong>Efeito de carga:</strong> conectar outro circuito à saída pode alterar a resistência equivalente e a constante de tempo.</p></li>
+          <li><span>✓</span><p><strong>Fuga de corrente:</strong> capacitores reais podem perder parte da carga armazenada.</p></li>
+          <li><span>✓</span><p><strong>Temperatura:</strong> variações térmicas podem alterar resistência, capacitância e comportamento do circuito.</p></li>
+        </ul>
+      </section>
+
+      <section class="source-section" id="sobre">
+        <div><span class="eyebrow">FONTE DO CONTEÚDO</span><h2>Continue explorando</h2><p>Conteúdo organizado a partir do guia técnico fornecido para o projeto educacional. Este portal poderá receber novos assuntos em módulos separados.</p></div>
+        <a href="#inicio" class="secondary-button">Voltar ao início ↑</a>
+      </section>
+      <div id="search-status" class="search-status" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><span class="brand-icon" aria-hidden="true">ϟ</span><span><strong>Portal Eletroeletrônica</strong><small>Conhecimento que conecta.</small></span></div>
+    <p>Projeto educacional · Pesquisa e Desenvolvimento</p>
+    <p class="copyright">© <span id="year"></span> Portal Eletroeletrônica</p>
+  </footer>
+</body>
+</html>
